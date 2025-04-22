@@ -1,25 +1,15 @@
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const { shareAll, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
 
-module.exports = {
-  output: {
-    uniqueName: "angular_app",
-    publicPath: "http://localhost:4200/"
+module.exports = withModuleFederationPlugin({
+
+  name: 'angular-module',
+
+  exposes: {
+    './Component': './src/app/app.component.ts',
   },
-  optimization: {
-    runtimeChunk: false
+
+  shared: {
+    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
   },
-  plugins: [
-    new ModuleFederationPlugin({
-      name: "angular_app",
-      filename: "remoteEntry.js",
-      exposes: {
-        './AngularComponent': './src/app/app.component.ts'
-      },
-      shared: {
-        "@angular/core": { singleton: true },
-        "@angular/common": { singleton: true },
-        "@angular/router": { singleton: true }
-      }
-    })
-  ]
-};
+
+});
