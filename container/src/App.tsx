@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-const NextComponent = React.lazy(() => import('nextModule/ExampleComponent'));
+
 const NextCardComponent = React.lazy(() => import('nextModule/CardComponent'))
 const NextServiceComponent = React.lazy(() => import('nextModule/ServiceComponent'))
 // const ReactButton = React.lazy(() => import('react_app/Button'));
@@ -13,12 +13,6 @@ function App() {
 
    <p>Hello world ! </p>
 
-      <Suspense fallback={<div>Loading Next.js component...</div>}>
-        <NextComponent
-          title="Hello from Container"
-          text="It works know "
-        />
-      </Suspense>
       <Suspense fallback={<div>Loading Next.js component...</div>}>
         <NextCardComponent
           title="Hello from Container"

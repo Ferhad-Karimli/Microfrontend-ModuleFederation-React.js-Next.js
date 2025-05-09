@@ -1,0 +1,38 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .layout-header {
+    background-color: #282c34;
+    color: white;
+    padding: 1rem;
+  }
+  
+  .layout-header h1 {
+    margin: 0;
+  }
+  
+  .layout-header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .layout-header nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .layout-content {
+    flex: 1;
+    padding: 2rem;
+  }
+  
+  .layout-footer {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 1rem;
+  }

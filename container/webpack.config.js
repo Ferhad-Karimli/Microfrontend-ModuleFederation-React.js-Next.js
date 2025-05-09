@@ -33,10 +33,14 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'container', // Name of your federated module
+      name: 'container', // Name of federated module
+      filename: 'remoteEntry.js', // Name of the file to be loaded
       remotes: {
         nextModule:
           'nextModule@http://localhost:3000/_next/static/chunks/remoteEntry.js',
+      },
+      exposes :{
+      './layout': './src/layout/Layout.tsx',
       },
       shared: {
         react: {

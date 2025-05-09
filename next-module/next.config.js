@@ -8,10 +8,12 @@ module.exports = {
       new NextFederationPlugin({
         name: 'nextModule',
         filename: 'static/chunks/remoteEntry.js',
+        remotes: {
+          container: 'container@http://localhost:3001/remoteEntry.js',
+        },
         exposes: {
-          './ExampleComponent': './src/components/ExampleComponent.tsx',
-          './CardComponent':'./src/components/CardComponent.tsx',
-          './ServiceComponent':'./src/components/ServiceComponent.tsx',
+          './CardComponent': './src/components/CardComponent.tsx',
+          './ServiceComponent': './src/components/ServiceComponent.tsx',
         },
         shared: {
           react: { singleton: true, requiredVersion: false },
