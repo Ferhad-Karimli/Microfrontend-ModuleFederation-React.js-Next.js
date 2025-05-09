@@ -10,7 +10,7 @@ module.exports = {
       directory: path.join(__dirname, 'dist'),
     },
     port: 3001, // Choose a different port from your container
-    hot: true
+    hot: true,
   },
   output: {
     publicPath: 'auto',
@@ -33,25 +33,21 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'react_module', // Name of your federated module
-      filename: 'remoteEntry.js', // The remote entry filename
-      exposes: {
-        // Components you want to expose
-        './Button': './src/components/Button',
-        './Card': './src/components/Card',
-        // Add more components as needed
+      name: 'container', // Name of your federated module
+      remotes: {
+        nextModule:
+          'nextModule@http://localhost:3000/_next/static/chunks/remoteEntry.js',
       },
       shared: {
-        // Shared dependencies
-        react: { 
-          singleton: true, 
-          requiredVersion: '^18.2.0', 
-          eager: true 
+        react: {
+          singleton: true,
+          requiredVersion: '^18.2.0',
+          eager: true,
         },
-        'react-dom': { 
-          singleton: true, 
-          requiredVersion: '^18.2.0', 
-          eager: true 
+        'react-dom': {
+          singleton: true,
+          requiredVersion: '^18.2.0',
+          eager: true,
         },
         // Add other shared dependencies
       },

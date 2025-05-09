@@ -1,0 +1,33 @@
+{
+  "name": "next-module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NEXT_PRIVATE_LOCAL_WEBPACK=true node server.js",
+    "build": "cross-env NEXT_PRIVATE_LOCAL_WEBPACK=true next build --no-lint",
+    "start": "node server-prod.js",
+    "start:next": "cross-env NODE_ENV=production node server.js",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@module-federation/nextjs-mf": "^7.0.8",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "next": "13.4.19",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "cross-env": "^7.0.3",
+    "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  }
+}
