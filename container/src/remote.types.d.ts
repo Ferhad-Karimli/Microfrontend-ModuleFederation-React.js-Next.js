@@ -37,3 +37,16 @@ declare module 'nextModule/ServiceComponent' {
 
   const ServiceComponent: React.FC<ServiceProps>;
 }
+
+
+declare module 'reactmodule/Product' {
+  import React from 'react';
+
+  interface ProductProps {
+    name: string;
+    price: number;
+  }
+
+  const Product: React.FC<ProductProps>;
+  export default Product;
+}

@@ -4,12 +4,10 @@ import React from 'react';
 
 export default function Home() {
   return (
-    // <Layout>
-    //   <p> Service Page</p>
-    // </Layout>
-
     <div>
-
+    <Layout>
+      <p> Service Page</p>
+    </Layout>
     </div>
   );
 }

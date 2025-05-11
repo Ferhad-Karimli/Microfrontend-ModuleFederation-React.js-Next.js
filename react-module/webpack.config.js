@@ -7,13 +7,22 @@ module.exports = {
   mode: 'development',
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist'),
+      directory: path.join(__dirname, 'public'),
     },
-    port: 3001, 
+    port: 3002,
     hot: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers':
+        'X-Requested-With, content-type, Authorization',
+    },
+    historyApiFallback: true,
   },
   output: {
-    publicPath: 'auto',
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
+    publicPath: 'http://localhost:3002/',
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.json'],
@@ -27,21 +36,19 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'container', // Name of federated module
-      filename: 'remoteEntry.js', // Name of the file to be loaded
+      name: 'reactmodule',
+      filename: 'remoteentry.js', // Ensure this is camel case
       remotes: {
-        nextModule:
-          'nextModule@http://localhost:3000/_next/static/chunks/remoteEntry.js',
-        reactmodule: 'reactmodule@http://localhost:3002/remoteentry.js',
+        container: 'container@http://localhost:3001/remoteEntry.js',
       },
       exposes: {
-        './layout': './src/layout/Layout.tsx',
+        './Product': './src/components/Product.tsx',
       },
       shared: {
         react: {
@@ -60,4 +67,7 @@ module.exports = {
       template: './public/index.html',
     }),
   ],
+  optimization: {
+    runtimeChunk: false,
+  },
 };
